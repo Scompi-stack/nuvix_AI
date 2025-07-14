@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nuvix - Agentes de IA que Transforman tu Empresa</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
+      color: #e0e6ed;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* Grid tecnológico de fondo */
+    .tech-grid {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0.1;
+      background-image: 
+        linear-gradient(rgba(0, 230, 255, 0.1) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 230, 255, 0.1) 1px, transparent 1px);
+      background-size: 50px 50px;
+      pointer-events: none;
+      z-index: 1;
+      animation: gridMove 20s linear infinite;
+    }
+
+    @keyframes gridMove {
+      0% { transform: translate(0, 0); }
+      100% { transform: translate(50px, 50px); }
+    }
+
+    /* Partículas de datos */
+    .data-particles {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    .data-particle {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      background: #00e6ff;
+      border-radius: 50%;
+      animation: dataFloat 8s linear infinite;
+      box-shadow: 0 0 4px #00e6ff;
+    }
+
+    @keyframes dataFloat {
+      0% { 
+        transform: translateY(100vh) translateX(0);
+        opacity: 0;
+      }
+      10% { opacity: 1; }
+      90% { opacity: 1; }
+      100% { 
+        transform: translateY(-100px) translateX(100px);
+        opacity: 0;
+      }
+    }
+
+    /* Circuitos de conexión */
+    .circuit-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1;
+      opacity: 0.3;
+    }
+
+    .circuit-line {
+      position: absolute;
+      background: linear-gradient(90deg, transparent, #00e6ff, transparent);
+      height: 1px;
+      animation: circuitPulse 4s ease-in-out infinite;
+    }
+
+    @keyframes circuitPulse {
+      0%, 100% { opacity: 0.2; }
+      50% { opacity: 0.8; }
+    }
+
+    /* Header futurista */
+    header {
+      padding: 1.5rem 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(10, 10, 10, 0.95);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(0, 230, 255, 0.2);
+      position: relative;
+      z-index: 100;
+    }
+
+    .logo {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 1.8rem;
+      font-weight: 500;
+      color: #00e6ff;
+      text-shadow: 0 0 10px rgba(0, 230, 255, 0.5);
+      position: relative;
+    }
+
+    .logo::after {
+      content: "_";
+      animation: blink 1s infinite;
+      color: #00e6ff;
+    }
+
+    @keyframes blink {
+      0%, 50% { opacity: 1; }
+      51%, 100% { opacity: 0; }
+    }
+
+    nav {
+      display: flex;
+      gap: 2rem;
+    }
+
+    nav a {
+      color: #e0e6ed;
+      text-decoration: none;
+      font-weight: 400;
+      font-size: 0.95rem;
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    nav a::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 0;
+      height: 100%;
+      background: linear-gradient(90deg, rgba(0, 230, 255, 0.1), rgba(0, 230, 255, 0.2));
+      border-radius: 4px;
+      transition: width 0.3s ease;
+    }
+
+    nav a:hover::before {
+      width: 100%;
+    }
+
+    nav a:hover {
+      color: #00e6ff;
+      text-shadow: 0 0 5px rgba(0, 230, 255, 0.5);
+    }
+
+    /* Hero section tecnológica */
+    .hero {
+      padding: 8rem 3rem 6rem;
+      text-align: center;
+      position: relative;
+      z-index: 10;
+      min-height: 85vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 800px;
+      height: 800px;
+      background: radial-gradient(circle, rgba(0, 230, 255, 0.1) 0%, transparent 70%);
+      transform: translate(-50%, -50%);
+      animation: pulseGlow 6s ease-in-out infinite;
+    }
+
+    @keyframes pulseGlow {
+      0%, 100% { 
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 0.3;
+      }
+      50% { 
+        transform: translate(-50%, -50%) scale(1.1);
+        opacity: 0.6;
+      }
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 20;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.5rem, 5vw, 4.5rem);
+      font-weight: 700;
+      background: linear-gradient(135deg, #ffffff 0%, #00e6ff 30%, #4169e1 70%, #8a2be2 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 1.5rem;
+      line-height: 1.2;
+      text-shadow: 0 0 30px rgba(0, 230, 255, 0.3);
+    }
+
+    .hero-subtitle {
+      font-size: 1.2rem;
+      color: #00e6ff;
+      font-weight: 500;
+      margin-bottom: 2rem;
+      font-family: 'JetBrains Mono', monospace;
+      opacity: 0.9;
+    }
+
+    .hero p {
+      font-size: 1.1rem;
+      color: #b8c1cc;
+      line-height: 1.7;
+      margin-bottom: 3rem;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .tech-highlight {
+      color: #00e6ff;
+      font-weight: 500;
+    }
+
+    /* Botón futurista */
+    .cta-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 1rem 2.5rem;
+      background: linear-gradient(135deg, #00e6ff, #4169e1);
+      color: #000;
+      border: none;
+      border-radius: 6px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      box-shadow: 0 4px 15px rgba(0, 230, 255, 0.3);
+    }
+
+    .cta-button::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+      transition: left 0.6s ease;
+    }
+
+    .cta-button:hover::before {
+      left: 100%;
+    }
+
+    .cta-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(0, 230, 255, 0.4);
+    }
+
+    /* Sección de capacidades */
+    .capabilities {
+      padding: 6rem 3rem;
+      background: linear-gradient(to bottom, transparent, rgba(10, 10, 10, 0.5));
+      position: relative;
+      z-index: 10;
+    }
+
+    .capabilities-container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .capabilities h2 {
+      font-size: 2.5rem;
+      font-weight: 600;
+      text-align: center;
+      margin-bottom: 3rem;
+      color: #ffffff;
+    }
+
+    .capabilities-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 2rem;
+    }
+
+    .capability-card {
+      background: rgba(10, 10, 10, 0.8);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(0, 230, 255, 0.2);
+      border-radius: 12px;
+      padding: 2rem;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .capability-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(0, 230, 255, 0.05), transparent);
+      transition: left 0.6s ease;
+    }
+
+    .capability-card:hover::before {
+      left: 100%;
+    }
+
+    .capability-card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(0, 230, 255, 0.4);
+      box-shadow: 0 10px 30px rgba(0, 230, 255, 0.2);
+    }
+
+    .capability-icon {
+      font-size: 2.5rem;
+      margin-bottom: 1.5rem;
+      color: #00e6ff;
+      display: none;
+    }
+
+    .capability-card h3 {
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: #ffffff;
+      margin-bottom: 1rem;
+    }
+
+    .capability-card p {
+      color: #b8c1cc;
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+    }
+
+    .tech-stack {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .tech-tag {
+      background: rgba(0, 230, 255, 0.1);
+      color: #00e6ff;
+      padding: 0.3rem 0.8rem;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-family: 'JetBrains Mono', monospace;
+      border: 1px solid rgba(0, 230, 255, 0.2);
+    }
+
+    /* Stats section */
+    .stats {
+      padding: 4rem 3rem;
+      background: rgba(0, 0, 0, 0.3);
+      position: relative;
+      z-index: 10;
+    }
+
+    .stats-container {
+      max-width: 800px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 2rem;
+      text-align: center;
+    }
+
+    .stat-item h3 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: #00e6ff;
+      margin-bottom: 0.5rem;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .stat-item p {
+      color: #b8c1cc;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    /* Footer */
+    footer {
+      padding: 3rem;
+      background: #0a0a0a;
+      border-top: 1px solid rgba(0, 230, 255, 0.1);
+      text-align: center;
+      position: relative;
+      z-index: 10;
+    }
+
+    footer p {
+      color: #666;
+      font-size: 0.9rem;
+    }
+
+    .circuit-line {
+      position: absolute;
+      background: linear-gradient(90deg, transparent, #00e6ff, transparent);
+      height: 1px;
+      animation: circuitPulse 4s ease-in-out infinite;
+      opacity: 0.3;
+    }
+
+    @keyframes circuitPulse {
+      0%, 100% { 
+        opacity: 0.1;
+        transform: scaleX(0.5);
+      }
+      50% { 
+        opacity: 0.4;
+        transform: scaleX(1);
+      }
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      header {
+        padding: 1rem 1.5rem;
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      nav {
+        gap: 1rem;
+      }
+
+      .hero {
+        padding: 6rem 1.5rem 4rem;
+      }
+
+      .capabilities {
+        padding: 4rem 1.5rem;
+      }
+
+      .capabilities-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .stats-container {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Grid tecnológico -->
+  <div class="tech-grid"></div>
+  
+  <!-- Partículas de datos -->
+  <div class="data-particles" id="dataParticles"></div>
+  
+  <!-- Circuitos de conexión -->
+  <div class="circuit-overlay" id="circuits"></div>
+
+  <header>
+    <div class="logo">NUVIX</div>
+    <nav>
+      <a href="soluciones.html">Soluciones</a>
+      <a href="metodologia.html">Metodología</a>
+      <a href="casos.html">Casos de Éxito</a>
+      <a href="contacto.html">Contacto</a>
+    </nav>
+  </header>
+
+  <section class="hero" id="inicio">
+    <div class="hero-content">
+      <div class="hero-subtitle">// Ingeniería + Inteligencia Artificial</div>
+      <h1>Identificamos y solucionamos problemas con <span class="tech-highlight">ingeniería inteligente</span></h1>
+      <p>
+        Combinamos <span class="tech-highlight">ingeniería de procesos con IA avanzada</span> para identificar ineficiencias 
+        y crear soluciones automatizadas que <span class="tech-highlight">optimizan operaciones</span> y generan 
+        resultados medibles para tu empresa.
+      </p>
+      <a href="#contacto" class="cta-button">
+        <span>Solicitar Demo Gratuita</span>
+        <span>→</span>
+      </a>
+    </div>
+  </section>
+
+  <section class="capabilities" id="soluciones">
+    <div class="capabilities-container">
+      <h2>Cómo Transformamos tu Empresa</h2>
+      <div class="capabilities-grid">
+        <div class="capability-card">
+          <h3>Análisis de Procesos</h3>
+          <p>Identificamos ineficiencias y cuellos de botella en tus operaciones mediante análisis profundo de datos y flujos de trabajo existentes.</p>
+          <div class="tech-stack">
+            <span class="tech-tag">Process Mining</span>
+            <span class="tech-tag">Data Analytics</span>
+            <span class="tech-tag">Performance Metrics</span>
+          </div>
+        </div>
+        <div class="capability-card">
+          <h3>Ingeniería de Soluciones</h3>
+          <p>Diseñamos arquitecturas robustas que integran IA con tus sistemas existentes, creando soluciones escalables y mantenibles.</p>
+          <div class="tech-stack">
+            <span class="tech-tag">System Integration</span>
+            <span class="tech-tag">API Development</span>
+            <span class="tech-tag">Cloud Architecture</span>
+          </div>
+        </div>
+        <div class="capability-card">
+          <h3>Implementación de IA</h3>
+          <p>Desarrollamos e implementamos modelos de inteligencia artificial específicos para resolver los problemas identificados en tu empresa.</p>
+          <div class="tech-stack">
+            <span class="tech-tag">Machine Learning</span>
+            <span class="tech-tag">Natural Language Processing</span>
+            <span class="tech-tag">Predictive Analytics</span>
+          </div>
+        </div>
+        <div class="capability-card">
+          <h3>Optimización Continua</h3>
+          <p>Monitoreamos y optimizamos constantemente las soluciones implementadas para garantizar máximo rendimiento y adaptación a cambios.</p>
+          <div class="tech-stack">
+            <span class="tech-tag">Performance Monitoring</span>
+            <span class="tech-tag">A/B Testing</span>
+            <span class="tech-tag">Continuous Improvement</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="stats" id="casos">
+    <div class="stats-container">
+      <div class="stat-item">
+        <h3>80%</h3>
+        <p>Reducción de tiempo</p>
+      </div>
+      <div class="stat-item">
+        <h3>24/7</h3>
+        <p>Disponibilidad continua</p>
+      </div>
+      <div class="stat-item">
+        <h3>95%</h3>
+        <p>Precisión en tareas</p>
+      </div>
+      <div class="stat-item">
+        <h3>60%</h3>
+        <p>Ahorro en costos</p>
+      </div>
+    </div>
+  </section>
+
+      <footer>
+    <p>&copy; 2025 Nuvix. Ingeniería e IA que transforman tu empresa.</p>
+  </footer>
+
+  <script>
+    // Generar partículas de datos
+    function createDataParticles() {
+      const container = document.getElementById('dataParticles');
+      const particleCount = 30;
+
+      for (let i = 0; i < particleCount; i++) {
+        const particle = document.createElement('div');
+        particle.className = 'data-particle';
+        
+        particle.style.left = Math.random() * 100 + '%';
+        particle.style.animationDelay = Math.random() * 8 + 's';
+        particle.style.animationDuration = (Math.random() * 4 + 6) + 's';
+        
+        container.appendChild(particle);
+      }
+    }
+
+    // Crear líneas de circuito
+    function createCircuitLines() {
+      const container = document.getElementById('circuits');
+      const lineCount = 8;
+
+      for (let i = 0; i < lineCount; i++) {
+        const line = document.createElement('div');
+        line.className = 'circuit-line';
+        
+        // Posicionamiento más controlado
+        const width = Math.random() * 200 + 100;
+        const isHorizontal = Math.random() > 0.5;
+        
+        if (isHorizontal) {
+          line.style.width = width + 'px';
+          line.style.height = '1px';
+          line.style.left = Math.random() * (window.innerWidth - width) + 'px';
+          line.style.top = Math.random() * window.innerHeight + 'px';
+        } else {
+          line.style.width = '1px';
+          line.style.height = width + 'px';
+          line.style.left = Math.random() * window.innerWidth + 'px';
+          line.style.top = Math.random() * (window.innerHeight - width) + 'px';
+          line.style.background = 'linear-gradient(0deg, transparent, #00e6ff, transparent)';
+        }
+        
+        line.style.animationDelay = Math.random() * 4 + 's';
+        line.style.animationDuration = (Math.random() * 2 + 3) + 's';
+        
+        container.appendChild(line);
+      }
+    }
+
+    // Efecto de parallax sutil
+    window.addEventListener('scroll', () => {
+      const scrolled = window.pageYOffset;
+      const rate = scrolled * -0.3;
+      
+      document.querySelector('.tech-grid').style.transform = `translateY(${rate}px)`;
+    });
+
+    // Smooth scrolling eliminado ya que los enlaces van a páginas externas
+    // Los enlaces ahora apuntan a archivos HTML separados
+
+    // Inicializar efectos
+    document.addEventListener('DOMContentLoaded', () => {
+      createDataParticles();
+      createCircuitLines();
+    });
+  </script>
+</body>
+</html>
