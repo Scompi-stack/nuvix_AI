@@ -573,13 +573,10 @@
   </style>
 </head>
 <body>
-  <!-- Grid tecnológico -->
   <div class="tech-grid"></div>
   
-  <!-- Partículas de datos -->
   <div class="data-particles" id="dataParticles"></div>
   
-  <!-- Circuitos de conexión -->
   <div class="circuit-overlay" id="circuits"></div>
 
   <header>
@@ -628,7 +625,7 @@
 
       <div class="contact-form">
         <h3>Envíanos un Mensaje</h3>
-        <form action="mailto:contacto@nuvix.com" method="post" enctype="text/plain">
+        <form action="https://formspree.io/f/mjkorekw" method="POST">
           <div class="form-group">
             <label for="name">Nombre</label>
             <input type="text" id="name" name="name" required>
@@ -664,11 +661,13 @@
             <textarea id="message" name="message" placeholder="Describe tu problema, desafío o idea. Entre más detalles, mejor podremos ayudarte..." required></textarea>
           </div>
           
+          <input type="hidden" name="_redirect" value="https://tudominio.com/gracias.html"> 
+          
           <button type="submit" class="submit-button">
             Enviar Mensaje
           </button>
         </form>
-      </div>
+        </div>
 
     </div>
 
@@ -741,22 +740,22 @@
       document.querySelector('.tech-grid').style.transform = `translateY(${rate}px)`;
     });
 
-    // Manejar envío del formulario
-    document.querySelector('.contact-form form').addEventListener('submit', function(e) {
-      e.preventDefault();
+    // Manejar envío del formulario (¡Este bloque fue comentado para usar Formspree!)
+    // document.querySelector('.contact-form form').addEventListener('submit', function(e) {
+    //   e.preventDefault();
       
-      const name = document.getElementById('name').value;
-      const company = document.getElementById('company').value;
-      const email = document.getElementById('email').value;
-      const type = document.getElementById('type').value;
-      const message = document.getElementById('message').value;
+    //   const name = document.getElementById('name').value;
+    //   const company = document.getElementById('company').value;
+    //   const email = document.getElementById('email').value;
+    //   const type = document.getElementById('type').value;
+    //   const message = document.getElementById('message').value;
       
-      const emailBody = `Nombre: ${name}%0D%0AEmpresa: ${company}%0D%0AEmail: ${email}%0D%0ATipo de Consulta: ${type}%0D%0A%0D%0AMensaje:%0D%0A${message}`;
+    //   const emailBody = `Nombre: ${name}%0D%0AEmpresa: ${company}%0D%0AEmail: ${email}%0D%0ATipo de Consulta: ${type}%0D%0A%0D%0AMensaje:%0D%0A${message}`;
       
-      const mailtoLink = `mailto:contacto@nuvix.com?subject=Consulta desde la web - ${type}&body=${emailBody}`;
+    //   const mailtoLink = `mailto:contacto@nuvix.com?subject=Consulta desde la web - ${type}&body=${emailBody}`;
       
-      window.location.href = mailtoLink;
-    });
+    //   window.location.href = mailtoLink;
+    // });
 
     // Inicializar efectos
     document.addEventListener('DOMContentLoaded', () => {
