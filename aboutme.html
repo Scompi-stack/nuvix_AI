@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sobre Nosotros - Nuvix</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
+      color: #e0e6ed;
+      overflow-x: hidden;
+      position: relative;
+      line-height: 1.6;
+    }
+
+    /* Grid tecnológico de fondo */
+    .tech-grid {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0.1;
+      background-image: 
+        linear-gradient(rgba(0, 230, 255, 0.1) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 230, 255, 0.1) 1px, transparent 1px);
+      background-size: 50px 50px;
+      pointer-events: none;
+      z-index: 1;
+      animation: gridMove 20s linear infinite;
+    }
+
+    @keyframes gridMove {
+      0% { transform: translate(0, 0); }
+      100% { transform: translate(50px, 50px); }
+    }
+
+    /* Partículas de datos */
+    .data-particles {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    .data-particle {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      background: #00e6ff;
+      border-radius: 50%;
+      animation: dataFloat 8s linear infinite;
+      box-shadow: 0 0 4px #00e6ff;
+    }
+
+    @keyframes dataFloat {
+      0% { 
+        transform: translateY(100vh) translateX(0);
+        opacity: 0;
+      }
+      10% { opacity: 1; }
+      90% { opacity: 1; }
+      100% { 
+        transform: translateY(-100px) translateX(100px);
+        opacity: 0;
+      }
+    }
+
+    /* Header futurista */
+    header {
+      padding: 1.5rem 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(10, 10, 10, 0.95);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(0, 230, 255, 0.2);
+      position: relative;
+      z-index: 100;
+    }
+
+    .logo {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 1.8rem;
+      font-weight: 500;
+      color: #00e6ff;
+      text-shadow: 0 0 10px rgba(0, 230, 255, 0.5);
+      position: relative;
+      text-decoration: none;
+    }
+
+    .logo::after {
+      content: "_";
+      animation: blink 1s infinite;
+      color: #00e6ff;
+    }
+
+    @keyframes blink {
+      0%, 50% { opacity: 1; }
+      51%, 100% { opacity: 0; }
+    }
+
+    nav {
+      display: flex;
+      gap: 2rem;
+    }
+
+    nav a {
+      color: #e0e6ed;
+      text-decoration: none;
+      font-weight: 400;
+      font-size: 0.95rem;
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    nav a.active {
+      color: #00e6ff;
+      text-shadow: 0 0 5px rgba(0, 230, 255, 0.5);
+    }
+
+    nav a::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 0;
+      height: 100%;
+      background: linear-gradient(90deg, rgba(0, 230, 255, 0.1), rgba(0, 230, 255, 0.2));
+      border-radius: 4px;
+      transition: width 0.3s ease;
+    }
+
+    nav a:hover::before {
+      width: 100%;
+    }
+
+    nav a:hover {
+      color: #00e6ff;
+      text-shadow: 0 0 5px rgba(0, 230, 255, 0.5);
+    }
+
+    /* Main content */
+    .main-content {
+      padding: 6rem 3rem 4rem;
+      max-width: 1000px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 10;
+    }
+
+    .hero-section {
+      text-align: center;
+      margin-bottom: 6rem;
+      position: relative;
+    }
+
+    .hero-section::before {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(0, 230, 255, 0.1) 0%, transparent 70%);
+      transform: translate(-50%, -50%);
+      animation: pulseGlow 6s ease-in-out infinite;
+    }
+
+    @keyframes pulseGlow {
+      0%, 100% { 
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 0.3;
+      }
+      50% { 
+        transform: translate(-50%, -50%) scale(1.1);
+        opacity: 0.6;
+      }
+    }
+
+    .hero-section h1 {
+      font-size: clamp(2rem, 4vw, 3.5rem);
+      font-weight: 700;
+      background: linear-gradient(135deg, #ffffff 0%, #00e6ff 30%, #4169e1 70%, #8a2be2 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 2rem;
+      line-height: 1.2;
+      position: relative;
+      z-index: 20;
+    }
+
+    .hero-subtitle {
+      font-size: 1.1rem;
+      color: #00e6ff;
+      font-weight: 500;
+      margin-bottom: 2rem;
+      font-family: 'JetBrains Mono', monospace;
+      opacity: 0.9;
+      position: relative;
+      z-index: 20;
+    }
+
+    /* Content sections */
+    .content-section {
+      background: rgba(10, 10, 10, 0.6);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(0, 230, 255, 0.2);
+      border-radius: 12px;
+      padding: 3rem;
+      margin-bottom: 3rem;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .content-section::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(0, 230, 255, 0.05), transparent);
+      transition: left 0.6s ease;
+    }
+
+    .content-section:hover::before {
+      left: 100%;
+    }
+
+    .content-section:hover {
+      border-color: rgba(0, 230, 255, 0.4);
+      box-shadow: 0 10px 30px rgba(0, 230, 255, 0.1);
+    }
+
+    .content-section h2 {
+      font-size: 1.8rem;
+      font-weight: 600;
+      color: #ffffff;
+      margin-bottom: 1.5rem;
+      position: relative;
+    }
+
+    .content-section h2::after {
+      content: "";
+      display: block;
+      width: 60px;
+      height: 2px;
+      background: linear-gradient(90deg, #00e6ff, #4169e1);
+      margin-top: 0.5rem;
+    }
+
+    .content-section h3 {
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: #00e6ff;
+      margin-bottom: 1rem;
+      margin-top: 2rem;
+    }
+
+    .content-section p {
+      color: #b8c1cc;
+      line-height: 1.7;
+      margin-bottom: 1.5rem;
+      text-align: justify;
+    }
+
+    .tech-highlight {
+      color: #00e6ff;
+      font-weight: 500;
+    }
+
+    /* Methodology list */
+    .methodology-list {
+      counter-reset: step-counter;
+      margin: 2rem 0;
+    }
+
+    .methodology-step {
+      counter-increment: step-counter;
+      background: rgba(0, 230, 255, 0.05);
+      border: 1px solid rgba(0, 230, 255, 0.2);
+      border-radius: 8px;
+      padding: 1.5rem;
+      margin-bottom: 1rem;
+      position: relative;
+      transition: all 0.3s ease;
+    }
+
+    .methodology-step::before {
+      content: counter(step-counter);
+      position: absolute;
+      left: -15px;
+      top: 15px;
+      background: linear-gradient(135deg, #00e6ff, #4169e1);
+      color: #000;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+      font-size: 0.9rem;
+      box-shadow: 0 2px 10px rgba(0, 230, 255, 0.3);
+    }
+
+    .methodology-step:hover {
+      background: rgba(0, 230, 255, 0.1);
+      transform: translateX(10px);
+    }
+
+    .methodology-step h4 {
+      color: #ffffff;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      margin-left: 20px;
+    }
+
+    .methodology-step p {
+      margin-left: 20px;
+      margin-bottom: 0;
+    }
+
+    /* Values list */
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      margin: 2rem 0;
+    }
+
+    .value-item {
+      background: rgba(0, 230, 255, 0.05);
+      border: 1px solid rgba(0, 230, 255, 0.2);
+      border-radius: 8px;
+      padding: 1.5rem;
+      transition: all 0.3s ease;
+    }
+
+    .value-item:hover {
+      background: rgba(0, 230, 255, 0.1);
+      transform: translateY(-5px);
+      box-shadow: 0 5px 20px rgba(0, 230, 255, 0.2);
+    }
+
+    .value-item h4 {
+      color: #00e6ff;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      font-size: 1.1rem;
+    }
+
+    .value-item p {
+      margin-bottom: 0;
+      font-size: 0.95rem;
+    }
+
+    /* CTA Section */
+    .cta-section {
+      text-align: center;
+      background: linear-gradient(135deg, rgba(0, 230, 255, 0.1), rgba(65, 105, 225, 0.1));
+      border: 2px solid rgba(0, 230, 255, 0.3);
+      border-radius: 12px;
+      padding: 3rem;
+      margin-top: 4rem;
+    }
+
+    .cta-section h2 {
+      color: #ffffff;
+      margin-bottom: 1rem;
+    }
+
+    .cta-section p {
+      font-size: 1.1rem;
+      margin-bottom: 2rem;
+      color: #b8c1cc;
+    }
+
+    .cta-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 1rem 2.5rem;
+      background: linear-gradient(135deg, #00e6ff, #4169e1);
+      color: #000;
+      border: none;
+      border-radius: 6px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      box-shadow: 0 4px 15px rgba(0, 230, 255, 0.3);
+    }
+
+    .cta-button::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+      transition: left 0.6s ease;
+    }
+
+    .cta-button:hover::before {
+      left: 100%;
+    }
+
+    .cta-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(0, 230, 255, 0.4);
+    }
+
+    /* Footer */
+    footer {
+      padding: 3rem;
+      background: #0a0a0a;
+      border-top: 1px solid rgba(0, 230, 255, 0.1);
+      text-align: center;
+      position: relative;
+      z-index: 10;
+    }
+
+    footer p {
+      color: #666;
+      font-size: 0.9rem;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      header {
+        padding: 1rem 1.5rem;
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      nav {
+        gap: 1rem;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .main-content {
+        padding: 4rem 1.5rem 2rem;
+      }
+
+      .content-section {
+        padding: 2rem;
+      }
+
+      .methodology-step {
+        margin-left: 20px;
+      }
+
+      .values-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Grid tecnológico -->
+  <div class="tech-grid"></div>
+  
+  <!-- Partículas de datos -->
+  <div class="data-particles" id="dataParticles"></div>
+
+  <header>
+    <a href="index.html" class="logo">NUVIX</a>
+    <nav>
+      <a href="soluciones.html">Soluciones</a>
+      <a href="metodologia.html">Metodología</a>
+      <a href="casos.html">Casos de Éxito</a>
+      <a href="aboutme.html" class="active">Sobre nosotros</a>
+      <a href="contacto.html">Contacto</a>
+    </nav>
+  </header>
+
+  <main class="main-content">
+    <section class="hero-section">
+      <div class="hero-subtitle">// Conoce Nuvix</div>
+      <h1>Ingeniería, Inteligencia Artificial y una Visión Transformadora</h1>
+    </section>
+
+    <section class="content-section">
+      <h2>Nuestro Propósito: Desbloquear el Potencial de tu Empresa a través de la IA</h2>
+      <p>
+        En Nuvix, creemos que la verdadera eficiencia y el crecimiento sostenible se logran cuando la tecnología más avanzada se adapta a las necesidades únicas de cada negocio. Nacimos con la visión de transformar la forma en que las empresas operan, identificando sus desafíos más complejos y diseñando soluciones de <span class="tech-highlight">inteligencia artificial y automatización</span> que no solo resuelven problemas, sino que generan un <span class="tech-highlight">impacto medible y duradero</span>.
+      </p>
+      <p>
+        <strong>No vendemos software genérico; construimos el futuro de tus operaciones, una solución personalizada a la vez.</strong>
+      </p>
+    </section>
+
+    <section class="content-section">
+      <h2>Detrás de Nuvix: La Mente y la Metodología</h2>
+      <p>
+        Nuvix es el resultado de la pasión por la innovación y la ingeniería de <span class="tech-highlight">Pablo Cela Durán</span>. A mis 22 años, aporto una perspectiva fresca, ágil y totalmente inmersa en las últimas tendencias tecnológicas.
+      </p>
+      <p>
+        Mi formación en ingeniería me dota de una <span class="tech-highlight">mentalidad analítica y sistemática</span> para desglosar problemas complejos, mientras que mi dominio de la IA y herramientas como n8n me permite construir soluciones <span class="tech-highlight">precisas, eficientes y escalables</span>. No solo entiendo cómo funciona la tecnología, sino cómo aplicarla estratégicamente para generar un <span class="tech-highlight">Retorno de Inversión (ROI) claro y tangible</span> para tu negocio.
+      </p>
+      <h3>Nuestra Fuerza es tu Agilidad</h3>
+      <p>
+        En un sector donde la "experiencia" se asocia a los años, en Nuvix transformamos nuestra agilidad y conocimiento de vanguardia en tu mayor ventaja. Nos movemos rápido, adoptamos las innovaciones antes que nadie y nos adaptamos fluidamente a tus necesidades cambiantes, algo que las estructuras más grandes a menudo no pueden ofrecer.
+      </p>
+    </section>
+
+    <section class="content-section">
+      <h2>Nuestra Metodología de Trabajo: Tu Hoja de Ruta hacia la Eficiencia</h2>
+      <p>
+        En Nuvix, cada proyecto comienza y termina contigo. Nuestra metodología se basa en la colaboración y la transparencia:
+      </p>
+      <div class="methodology-list">
+        <div class="methodology-step">
+          <h4>Diagnóstico Profundo</h4>
+          <p>Nos sumergimos en tus operaciones para identificar los verdaderos puntos de dolor y las oportunidades de optimización.</p>
+        </div>
+        <div class="methodology-step">
+          <h4>Diseño a Medida</h4>
+          <p>Creamos una arquitectura de solución única, utilizando agentes de IA y la flexibilidad de n8n, pensada específicamente para tus desafíos.</p>
+        </div>
+        <div class="methodology-step">
+          <h4>Implementación Ágil</h4>
+          <p>Desarrollamos e integramos la solución en tus sistemas existentes, asegurando una transición fluida.</p>
+        </div>
+        <div class="methodology-step">
+          <h4>Optimización Continua</h4>
+          <p>Monitoreamos el rendimiento y realizamos ajustes para garantizar que la solución evolucione con tu negocio y siga ofreciendo el máximo valor.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="content-section">
+      <h2>Nuestros Valores: Los Pilares de Nuvix</h2>
+      <div class="values-grid">
+        <div class="value-item">
+          <h4>Innovación Constante</h4>
+          <p>Siempre explorando las últimas fronteras de la IA y la automatización para ofrecerte lo mejor.</p>
+        </div>
+        <div class="value-item">
+          <h4>Orientación a Resultados</h4>
+          <p>Nuestro éxito se mide por el impacto real que generamos en tu eficiencia y rentabilidad.</p>
+        </div>
+        <div class="value-item">
+          <h4>Transparencia</h4>
+          <p>Comunicación clara y honesta en cada etapa del proyecto.</p>
+        </div>
+        <div class="value-item">
+          <h4>Fiabilidad</h4>
+          <p>Compromiso con soluciones robustas, seguras y de alto rendimiento.</p>
+        </div>
+        <div class="value-item">
+          <h4>Agilidad</h4>
+          <p>Adaptación rápida a tus necesidades y a los cambios del mercado.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta-section">
+      <h2>¿Listo para Transformar tu Negocio con Inteligencia Artificial?</h2>
+      <p>
+        En Nuvix, estamos preparados para ayudarte a identificar esos dolores ocultos y convertirlos en oportunidades de crecimiento. Contáctanos hoy mismo para explorar cómo la ingeniería inteligente puede redefinir la eficiencia de tu empresa.
+      </p>
+      <a href="contacto.html" class="cta-button">
+        <span>Contactar Ahora</span>
+        <span>→</span>
+      </a>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Nuvix. Ingeniería e IA que transforman tu empresa.</p>
+  </footer>
+
+  <script>
+    // Generar partículas de datos
+    function createDataParticles() {
+      const container = document.getElementById('dataParticles');
+      const particleCount = 20;
+
+      for (let i = 0; i < particleCount; i++) {
+        const particle = document.createElement('div');
+        particle.className = 'data-particle';
+        
+        particle.style.left = Math.random() * 100 + '%';
+        particle.style.animationDelay = Math.random() * 8 + 's';
+        particle.style.animationDuration = (Math.random() * 4 + 6) + 's';
+        
+        container.appendChild(particle);
+      }
+    }
+
+    // Efecto de parallax sutil
+    window.addEventListener('scroll', () => {
+      const scrolled = window.pageYOffset;
+      const rate = scrolled * -0.3;
+      
+      document.querySelector('.tech-grid').style.transform = `translateY(${rate}px)`;
+    });
+
+    // Inicializar efectos
+    document.addEventListener('DOMContentLoaded', () => {
+      createDataParticles();
+    });
+  </script>
+</body>
+</html>
